@@ -1,11 +1,11 @@
-from mongoengine import DynamicDocument
+from mongoengine import DynamicDocument, Document
 from mongoengine.fields import StringField, IntField, ListField, DictField
 
 
-class MovieModel(DynamicDocument):
+class MovieModel(Document):
     genres = ListField()
     fullplot = StringField()
     awards = DictField()
     runtime = IntField()
     title = StringField()
-    meta = {"collection": "movies"}
+    meta = {"collection": "movies", "strict": False}
