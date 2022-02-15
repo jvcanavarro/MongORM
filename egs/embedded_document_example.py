@@ -27,7 +27,7 @@ class SongRepository:
     ) -> SongModel:
         """Update all songs  with id=id and date.year=current_year with new_year"""
         model = SongModel.objects(id=id, date__year=current_year).modify(
-            # __raw__={"$set": {"date.$.year": 7}}
+            # __raw__={"$set": {"date.$.year": current_year}}
             set__date__S__year=new_year,
             upsert=True,
             new=True,
@@ -35,9 +35,14 @@ class SongRepository:
         print(f"\nModel Id: {model.id}\n")
         return model
 
-    def read_song_date_by_id(self, id: str) -> EmbeddedDocumentList:
+    def read_song_date_by_id(self, id: ObjectId) -> EmbeddedDocumentList:
         """return songs.date by id"""
         return SongModel.objects.get(id=id).date
+
+    def insert_date_to_song(self, id: ObjectId, date: DateModel):
+        model = SongModel.objects.get(id=id)
+        model.date.append(date)
+        return model.save()
 
 
 def print_dates(dates):
@@ -73,3 +78,11 @@ if __name__ == "__main__":
 
     print("--Song dates after update--")
     print_dates(model.date)
+
+    model2 = SongRepository().insert_date_to_song(
+        song2.id, DateModel(year=1999, day=10, month=8)
+    )
+
+    print("\n--Song dates after insert--")
+    print_dates(model2.date)
+
