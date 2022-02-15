@@ -53,6 +53,9 @@ $ - curl --request POST --url http://127.0.0.1:5000/get_movies_by_awards --data 
 Movie: The Big Parade
 ```
 
+## Extra: Querying a `EmbeddedDocument`
+The `egs/` folder contains examples of queries to filter a model by id and EmbeddedDocument field value at the same time. It also contain a example of adding a new `EmbeddedDocument` model to a `EmbeddedDocumentListField`.
+
 ## TODO
 
 - [ ] Add Swagger support.
