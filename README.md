@@ -54,7 +54,7 @@ Movie: The Big Parade
 ```
 
 ## Extra: Querying a `EmbeddedDocument`
-The `egs/` folder contains examples of queries to filter a model by id and EmbeddedDocument field value at the same time. It also contain a example of adding a new `EmbeddedDocument` model to a `EmbeddedDocumentListField`.
+The `egs` folder contains examples of queries to filter a model by id and `EmbeddedDocument` field value at the same time. It also contain a example of adding a new `EmbeddedDocument` model to a `EmbeddedDocumentListField`.
 
 ## TODO
 
